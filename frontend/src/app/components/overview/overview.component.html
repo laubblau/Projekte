@@ -1,0 +1,52 @@
+<div class="container d-flex flex-column align-items-center mt-5 font-century-gothic">
+  <h1 class="mb-4">Konten und Kategorien verwalten</h1>
+
+  <div class="row">
+
+    <div class="col">
+      <div class="m-3 p-3" style="border: solid;">
+        <h2>Konten:</h2>
+        <table class="table mt-4 mb-4">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Balance</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let account of accounts">
+              <td>{{account.name}}</td>
+              <td>{{account.balance}} Euro</td>
+              <td><button class="btn btn-primary" [routerLink]="['/accform', account.id]">Bearbeiten</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-success" [routerLink]="['/accform', -1]">Konto Erstellen</button>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="m-3 p-3" style="border: solid;">
+        <h2>Kategorien:</h2>
+        <table class="table mt-4 mb-4">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of categories">
+              <td>{{category.name}}</td>
+              <td><button class="btn btn-primary" (click)="updateCategory(category.id!)">Bearbeiten</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-success mt-3" (click)="createCategory()">Kategorie Erstellen</button>
+      </div>
+    </div>
+  </div>
+</div>

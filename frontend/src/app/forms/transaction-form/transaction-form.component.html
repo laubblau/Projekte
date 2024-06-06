@@ -1,0 +1,83 @@
+<div class="container p-3">
+  <h1>{{ transactionId === -1 ? 'Trasaktion Erstellen' : (transaction?.description + ' abändern' || '') }}</h1>
+
+  <form [formGroup]="transactionForm" (ngSubmit)="saveTransaction()">
+
+    <div class="form-group">
+      <label for="date">Datum</label>
+      <input type="date" id="date" formControlName="date" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Betrag</label>
+      <input type="number" id="amount" formControlName="amount" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Beschreibung</label>
+      <input type="text" id="description" formControlName="description" class="form-control">
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" id="recurring" formControlName="recurring" class="form-check-input">
+      <label for="recurring" class="form-check-label">Wiederkehrend</label>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Kategorie</label>
+      <select id="category" formControlName="category" class="form-control">
+        <option *ngFor="let category of categories" [value]="category.id" [selected]="category.id === (transaction?.category ?? null)">{{ category.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="account">Konto</label>
+      <select id="account" formControlName="account" class="form-control">
+        <option *ngFor="let account of accounts" [value]="account.id" [selected]="account.id === (transaction?.account ?? null)">{{ account.name }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ transactionId === -1 ? 'Erstellen' : 'Aktualisieren' }}</button>
+    <button (click)="deleteTransaction()" *ngIf="transactionId !== -1" class="btn btn-primary">Löschen</button>
+  </form>
+</div>
+
+
+
+
+<!--
+<form [formGroup]="transactionForm" (ngSubmit)="saveTransaktion()">
+
+    <label for="date">Datum:</label><br>
+    <input type="date" id="date" formControlName="date" class="form-control" [placeholder]="transaction?.date ?? ''"><br><br>
+
+
+    <label for="amount">Betrag:</label><br>
+    <input type="number" id="amount" formControlName="amount" class="form-control" [placeholder]="transaction?.amount ?? ''"><br><br>
+
+
+    <label for="description">Beschreibung:</label><br>
+    <input type="text" id="description" formControlName="description" class="form-control" [placeholder]="transaction?.description ?? ''"><br><br>
+
+
+    <label for="recurring">Wiederkehrend:</label><br>
+    <input type="checkbox" id="recurring" formControlName="recurring" class="form-check-input" [placeholder]="transaction?.recurring ?? ''"><br><br>
+
+
+    <label for="category">Kategorie:</label><br>
+    <select id="category" formControlName="category" class="form-control">
+      <option *ngFor="let category of categories" [value]="category" [selected]="category.id === (transaction?.category?.id ?? null)">{{ category.name }}</option>
+    </select><br><br>
+
+
+    <label for="account">Konto:</label><br>
+    <select id="account" formControlName="account" class="form-control">
+      <option *ngFor="let account of accounts" [value]="account" [selected]="account.id === (transaction?.account?.id ?? null)">{{ account.name }}</option>
+    </select><br><br>
+
+
+  <button type="submit" class="btn btn-primary">{{ transactionId === -1 ? 'Erstellen' : 'Aktualisieren' }}</button><br><br>
+  <button (click)="deleteTransaction()" *ngIf="transactionId !== -1">Löschen</button>
+
+</form>
+-->

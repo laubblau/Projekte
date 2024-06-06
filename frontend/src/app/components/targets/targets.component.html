@@ -1,0 +1,14 @@
+<div class="font-century-gothic">
+  <app-target-form
+    [targetList]="targets"
+    (generateTarget)="postTarget($event)"
+    (updateTarget)="putTarget($event)"
+    (deleteTarget)="deleteTarget($event)"
+  ></app-target-form>
+  <app-debt-form
+    [debtList]="debts"
+    (generateDebt)="postDebt($event)"
+    (updateDebt)="putDebt($event)"
+    (deleteDebt)="deleteDebt($event)"
+  ></app-debt-form>
+</div>

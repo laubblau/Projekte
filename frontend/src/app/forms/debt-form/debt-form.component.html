@@ -1,0 +1,40 @@
+<div class="font-century-gothic">
+  <div class="mt-1 mb-2 p-3 bg-primary text-white rounded text-center">
+    <h1>Meine Schulden</h1>
+  </div>
+
+  <div style="border: solid; padding: 1em; margin: 1em">
+    <form [formGroup]="debtsForm" (ngSubmit)="saveDebt()">
+      <table>
+        <thead>
+          <tr>
+            <th>Total Debts</th>
+            <th>Already Paid</th>
+            <th>Beneficiary</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let debt of debtList">
+            <td>{{ debt.total_debts }}</td>
+            <td>{{ debt.already_paid }}</td>
+            <td>{{ debt.beneficiary }}</td>
+            <td>{{ debt.deadline | date }}</td>
+            <td>
+              <button type="button" class="btn btn-primary text-white" (click)="editDebts(debt)">Bearbeiten</button>
+              <button type="button" class="btn btn-primary text-white" (click)="removeDebt(debt.id)">Löschen</button>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="number" formControlName="total_debts"></td>
+            <td><input type="number" formControlName="already_paid"></td>
+            <td><input type="text" formControlName="beneficiary"></td>
+            <td><input type="date" formControlName="deadline"></td>
+            <td><button type="submit" class="btn btn-primary text-white">Speichern</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>

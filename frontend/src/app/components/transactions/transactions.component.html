@@ -1,0 +1,86 @@
+<div class="row flex-nowrap container-fluid p-5 m-2 w-75 mx-auto font-century-gothic" data-bs-spy="scroll"
+  data-bs-target=".navbar" data-bs-offset="50">
+  <div class="col-lg-12 flex-shrink-1">
+    <div class="table-responsive">
+      <table class="table table-container" style="border: solid;">
+        <thead>
+          <tr>
+            <th (click)="sortBy('date')">Datum</th>
+            <th (click)="sortBy('amount')">Betrag</th>
+            <th (click)="sortBy('description')">Beschreibung</th>
+            <th (click)="sortBy('recurring')">Wiederkehrend</th>
+            <th (click)="sortBy('category')">Kategorie</th>
+            <th (click)="sortBy('account')">Konto</th>
+            <th>Bearbeiten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of filteredTransactions">
+            <td>{{ transaction.date | date }}</td>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>{{ transaction.recurring ? 'Ja' : 'Nein' }}</td>
+            <td>{{ transaction.category ? transaction.category.name : " " }}</td>
+            <td>{{ transaction.account ? transaction.account.name : " " }}</td>
+            <td><button class="btn btn-danger" (click)="updateTransaction(transaction.id!)">Ändern</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="filter-container col" style="border: solid; padding: 1em; margin: 1em">
+    <button class="btn btn-primary" (click)="createTransaction()">Transaktion Hinzufügen</button><br><br>
+
+    <form [formGroup]="formGroup">
+      <div>
+        <label>Von:</label>
+        <input type="date" formControlName="startDate"><br>
+        <label>Bis:</label>
+        <input type="date" formControlName="endDate"><br>
+      </div><br>
+
+      <div>
+        <label>Mindestbetrag:</label><br>
+        <input type="number" formControlName="minAmount"><br>
+        <label>Höchstbetrag:</label><br>
+        <input type="number" formControlName="maxAmount"><br>
+      </div><br>
+
+      <div>
+        <label>Einnahmen:</label>
+        <input type="checkbox" formControlName="incomeFilter"><br>
+        <label>Ausgaben:</label>
+        <input type="checkbox" formControlName="expenseFilter"><br>
+        <label>Fixkosten:</label>
+        <input type="checkbox" formControlName="recurringFilter"><br>
+      </div><br>
+
+      <div class="filter-dropdown" [class.hide-dropdown]="!showCategoryDropdown">
+        <button class="btn btn-primary" type="button" (click)="categoryDropdown()">
+          {{ showCategoryDropdown ? 'Kategorien verbergen' : 'Kategorien anzeigen' }}
+        </button><br>
+        <div *ngIf="showCategoryDropdown">
+          <div *ngFor="let category of categories">
+            <input type="checkbox" [value]="category" (change)="addCategory(category)">
+            {{ category.name }} <br>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="filter-dropdown" [class.hide-dropdown]="!showAccountDropdown">
+        <button class="btn btn-primary" type="button" (click)="accountDropdown()">
+          {{ showAccountDropdown ? 'Konten verbergen' : 'Konten anzeigen' }}
+        </button><br>
+        <div *ngIf="showAccountDropdown">
+          <div *ngFor="let account of accounts">
+            <input type="checkbox" [value]="account" (change)="addAccount(account)">
+            {{ account.name }} <br>
+          </div>
+        </div>
+      </div><br><br>
+
+      <button class="btn btn-primary" type="button" (click)="applyFilters()">Filter anwenden</button>
+    </form>
+  </div>
+</div>

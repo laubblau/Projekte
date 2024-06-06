@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap');
+
+.font-century-gothic {
+  font-family: 'Century Gothic', sans-serif;
+}
+
+.container-kontoanzeige {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.header-kontoanzeige {
+  flex: 1;
+  text-align: center;
+  background-color: #00A4D3;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.content {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  text-align: center;
+}
+
+.balance {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.current {
+  font-style: italic;
+}
+
+container-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.rounded-rectangle {
+  display: flex;
+  justify-content: space-between;
+  width: 89%;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.expenditure-section,
+.income-section {
+  display: flex;
+  align-items: center;
+}
+
+.label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  width: 95%;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.table th:hover {
+  background-color: #f5f5f5;
+  color: black;
+  cursor: pointer;
+}

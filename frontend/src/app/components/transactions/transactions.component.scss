@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Century+Gothic&display=swap');
+
+.font-century-gothic {
+  font-family: 'Century Gothic', sans-serif;
+}
+
+
+
+
+.container {
+  display: flex;
+}
+
+.table-container {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.filter-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.filter-dropdown {
+  background-color: rgb(253, 253, 253);
+}
+
+.filter-dropdown.hide-dropdown {
+  background-color: white;
+}
+
+.table-container th:hover {
+  background-color: #0b6091;
+  cursor: pointer;
+}
+
+.table-container th:hover,
+.filter-container button:hover {
+  background-color: #0b6091;
+  cursor: pointer;
+}

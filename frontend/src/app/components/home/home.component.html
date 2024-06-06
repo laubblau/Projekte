@@ -1,0 +1,62 @@
+<div class="font-century-gothic">
+
+  <div class="container-kontoanzeige">
+    <div class="header-kontoanzeige bg-primary">
+      {{ accountId === -1 ? 'Gesamtübersicht' : (getAccountById(accountId)?.name || '') }}
+    </div>
+    <div class="content">
+      <div class="balance">Summe: {{ calculateBalance() }}</div>
+      <div class="current">Aktuell</div>
+    </div>
+  </div><br>
+
+  <div class="container-table">
+
+    <div class="header bg-light text-dark p-3">
+      <h5 class="m-0">Aktueller Monat: Ausgaben | Einnahmen</h5>
+    </div>
+
+    <div class="rounded-rectangle p-3">
+      <div class="expenditure-section">
+        <span class="label-wrapper">Gesamt Ausgaben:</span>
+        <span class="amount" style="color: red;"> - {{ calculateTotalExpenditure() }}</span>
+      </div>
+      <div class="income-section">
+        <span class="label-wrapper">Gesamt Einnahmen:</span>
+        <span class="amount" style="color: green;"> + {{ calculateTotalIncome() }}</span>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-primary">
+            <th (click)="sortBy('date')" class="font-century-gothic">Datum</th>
+            <th (click)="sortBy('amount')" class="font-century-gothic">Betrag</th>
+            <th (click)="sortBy('category')" class="font-century-gothic">Kategorie</th>
+            <th (click)="sortBy('description')" class="font-century-gothic">Beschreibung</th>
+            <th (click)="sortBy('recurring')" class="font-century-gothic">Wiederkehrend</th>
+            <th (click)="sortBy('account')" class="font-century-gothic">Konto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let transaction of filteredTransactions.slice(filteredTransactions.length - 10)">
+            <tr>
+              <td>{{ transaction.date | date }}</td>
+              <td [style.color]="transaction.amount < 0 ? 'red' : 'green'">{{ transaction.amount }}</td>
+              <td>{{ transaction.category.name }}</td>
+              <td>{{ transaction.description }}</td>
+              <td>{{ transaction.recurring ? 'Ja' : 'Nein' }}</td>
+              <td>{{ transaction.account.name }}</td>
+            </tr>
+          </ng-container>
+
+          <tr *ngIf="!filteredTransactions.length">
+            <td colspan="6" style="color: red;">Es sind noch keine Transaktionen für {{ getAccountById(accountId)?.name }} vorhanden. <br> Lege neue Transaktionen an oder klicke in der Zwischenzeit <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">hier</a>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+

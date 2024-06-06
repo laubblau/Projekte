@@ -1,0 +1,92 @@
+<div class="font-century-gothic">
+  <div class="mt-1 mb-2 p-3 bg-primary text-white rounded text-center">
+    <h1>Meine Ziele</h1>
+  </div>
+
+  <div style="border: solid; padding: 1em; margin: 1em">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rate</th>
+            <th>Unit</th>
+            <th>Anfangs Datum</th>
+            <th>End Datum</th>
+            <th>Bearbeiten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let target of targetList">
+            <td>{{ target.name }}</td>
+            <td>{{ target.rate }}</td>
+            <td>{{ target.unit }}</td>
+            <td>{{ target.startDate | date }}</td>
+            <td>{{ target.endDate | date }}</td>
+            <td>
+              <button type="button" class="btn btn-primary text-white" (click)="editTarget(target)">Bearbeiten</button>
+              <button type="button" class="btn btn-primary text-white"
+                (click)="removeTarget(target.id!)">Löschen</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12 text-end">
+      <button class="btn btn-primary text-white" (click)="openTargetForm()">Neues Ziel anlegen</button>
+    </div>
+  </div>
+
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Meine Ziele</h4>
+          <button type="button" class="btn-close" (click)="closeTargetForm()" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div style="border: solid; padding: 1em; margin: 1em">
+            <form [formGroup]="targetForm" (ngSubmit)="saveTarget()">
+
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" formControlName="name" id="name" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="rate">Rate:</label>
+                <input type="number" formControlName="rate" id="rate" class="form-control">
+
+                <select formControlName="unit">
+                  <option value="€">€</option>
+                  <option value="$">$</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="startDate">Startdatum:</label>
+                <input type="date" formControlName="startDate" id="startDate" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="endDate">Enddatum:</label>
+                <input type="date" formControlName="endDate" id="endDate" class="form-control">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Speichern</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            (click)="closeTargetForm()">Schließen</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
