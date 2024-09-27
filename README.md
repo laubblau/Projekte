@@ -1,2 +1,2 @@
-# Projekte
-Miniprojekte inkl. Abschlussprojekt: BudgetBuddy
+# Project housekeeping book
+Bootcamp final project: BudgetBuddy
